@@ -8,7 +8,10 @@ function App() {
         <div style={{height:'50px'}}></div>
         <Button disabled={true}>按钮</Button>
         <Button btnType={ButtonType.Danger}>按钮</Button>
-        <Button btnType={ButtonType.Link} href='www.baidu.com'>按钮</Button>
+        <Button size={ButtonSize.Large}>按钮</Button>
+        <Button size={ButtonSize.Small}>按钮</Button>
+        
+        <Button btnType={ButtonType.Link} href='http://www.baidu.com'>按钮</Button>
 
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

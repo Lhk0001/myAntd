@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div style={{height:'50px'}}></div>
         <Button disabled={true}>按钮</Button>
         <Button btnType={ButtonType.Danger}>按钮</Button>
         <Button btnType={ButtonType.Link} href='www.baidu.com'>按钮</Button>

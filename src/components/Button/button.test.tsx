@@ -5,8 +5,8 @@ const defailtProps={
     onClick: jest.fn()
 }
 const testPorps:ButtonProps={
-    btnType:ButtonType.Primary,
-    size:ButtonSize.Large,
+    btnType:'primary',
+    size:'lg',
 
 }
 describe('test Button component',()=>{
@@ -20,7 +20,7 @@ describe('test Button component',()=>{
         expect(defailtProps.onClick).toHaveBeenCalled()
     })
     it('should render the correct component based on different props',()=>{
-        const wrapper=render(<Button  btnType={ButtonType.Link}>Nice</Button>)
+        const wrapper=render(<Button  btnType={'link'}>Nice</Button>)
         const element =wrapper.getByText('Nice')
         expect(element).toBeInTheDocument()
         // expect(element.tagName).toEqual('A')

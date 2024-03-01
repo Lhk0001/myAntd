@@ -11,7 +11,9 @@ export interface MenuProps{
     mode?:MenuMode;
     style?:React.CSSProperties;
     children?:React.ReactNode;
-    onSelect?:SelectCallback
+    onSelect?:SelectCallback;
+
+    defaultOpenSubMenus?:string[]
 }
 interface IMenuContext{
     index:string,
@@ -19,8 +21,8 @@ interface IMenuContext{
     mode:MenuMode
 }
 export const MenuContext=createContext<IMenuContext>({index:'0',mode:'horizontal'})
-const Menu:React.FC<MenuProps>=(props)=>{
-    const {className,defaultIndex,mode,style,onSelect,children,...restProps}=props
+export const Menu:React.FC<MenuProps>=(props)=>{
+    const {className,defaultIndex,mode,style,onSelect,children,defaultOpenSubMenus,...restProps}=props
     const [currentActive,setActive]=useState(defaultIndex||'0')
     const classes=classNames('mg-menu',className,{
         'mg-menu-vertical':mode==='vertical',
@@ -47,7 +49,8 @@ const Menu:React.FC<MenuProps>=(props)=>{
                 return <MenuItem {...childElement.props} index={String(index)}>{childElement.props.children}</MenuItem>
             }
             else if(dispalyName ==='SubMenu'){
-                return <SubMenu {...childElement.props} index={String(index)}>
+                
+                return <SubMenu {...childElement.props} defaultOpen={defaultOpenSubMenus?.includes(String(index))?true:false} index={String(index)}>
                     {childElement.props.children}
                 </SubMenu>
             }

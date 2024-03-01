@@ -3,6 +3,8 @@ import Button,{ButtonSize,ButtonType} from './components/Button/Button';
 import Menu from './components/Menu/Menu';
 import MenuItem from './components/Menu/MenuItem';
 import SubMenu from './components/Menu/SubMenu';
+import Tabs from './components/Tabs/Tabs';
+import TabItem from './components/Tabs/TabItem';
 function App() {
   
   return (
@@ -10,11 +12,11 @@ function App() {
       <header className="App-header">
         <div style={{height:'50px'}}></div>
         <Button disabled={true}>按钮</Button>
-        <Button btnType={ButtonType.Danger}>按钮</Button>
-        <Button size={ButtonSize.Large}>按钮</Button>
-        <Button size={ButtonSize.Small}>按钮</Button>
+        <Button btnType={'danger'}>按钮</Button>
+        <Button size={'lg'}>按钮</Button>
+        <Button size={'sm'}>按钮</Button>
         
-        <Button btnType={ButtonType.Link} href='http://www.baidu.com'>按钮</Button>
+        <Button btnType={'link'} href='http://www.baidu.com'>按钮</Button>
 
         <Menu mode='vertical' onSelect={(value:string)=>console.log(value)}>
           <MenuItem >1</MenuItem>
@@ -37,6 +39,12 @@ function App() {
             <MenuItem>3</MenuItem>
           </SubMenu>
         </Menu>
+        <Tabs type='card' onSelect={(index)=>console.log(index)
+        }>
+          <TabItem label={'1'}>1111</TabItem>
+          <TabItem label={'2'}>2222</TabItem>
+          <TabItem label={'3'}>3333</TabItem>
+        </Tabs>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

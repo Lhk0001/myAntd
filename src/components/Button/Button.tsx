@@ -1,22 +1,17 @@
 import React from "react";
 import "../../styles/index.scss";
 import classNames from "classnames";
-export enum ButtonSize {
-  Large = "lg",
-  Small = "sm",
-}
+export type ButtonSize ="lg"|"sm"
 
-export enum ButtonType {
-  Primary = "primary",
-  Default = "default",
-  Danger = "danger",
-  Link = "link",
-}
+export type ButtonType ="primary"|"default"|"danger"|"link"
 
 interface BaseButtonProps {
   className?: string;
+  /**设置Button是否禁用*/
   disabled?: boolean;
+  /**设置Button尺寸*/
   size?: ButtonSize;
+  /**设置Button类型*/
   btnType?: ButtonType;
   children: React.ReactNode;
   href?: string;
@@ -24,15 +19,23 @@ interface BaseButtonProps {
 type NativeButtonProps=BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
 type AnchorButtonProps=BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps=Partial<NativeButtonProps & AnchorButtonProps>
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * 页面常用的按钮元素，完成特定的交互，支持HTML button和a链接的所有属性
+ * ###引用方法
+ * ```js
+ * import {Button} from 'mg'
+ * ```
+ */
+
+export const Button: React.FC<ButtonProps> = (props) => {
   const { btnType, className, disabled, size, children, href ,...restProps} = props;
   //默认btn
   const classes = classNames("mg-btn",className, {
     [`mg-btn-${btnType}`]: btnType,
     [`mg-btn-${size}`]: size,
-    disabled: btnType === ButtonType.Link && disabled,
+    disabled: btnType === 'link' && disabled,
   });
-  if (btnType === ButtonType.Link && href) {
+  if (btnType === 'link' && href) {
     return (
       <a href={href} className={classes} {...restProps}>
         {children}
@@ -47,6 +50,6 @@ const Button: React.FC<ButtonProps> = (props) => {
 };
 Button.defaultProps={
     disabled:false,
-    btnType:ButtonType.Default
+    btnType:'default'
 }
 export default Button

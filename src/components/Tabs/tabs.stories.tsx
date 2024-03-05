@@ -5,7 +5,7 @@ const tabsMeta:ComponentMeta<typeof Tabs>={
     title:'Tabs',
     id:'tabs',
     component:Tabs,
-    tags: ['autodocs']
+    tags: ['autodocs'],
 }
 export default tabsMeta
 const Template:ComponentStory<typeof Tabs>=(args)=>(
@@ -15,8 +15,22 @@ const Template:ComponentStory<typeof Tabs>=(args)=>(
       <TabItem label={'3'}>内容3</TabItem>
     </Tabs>
 )
+export const defaultTabs=Template.bind({})
+defaultTabs.storyName='defalutTabs'
+defaultTabs.args={
+    type:'line',
+    defaultIndex:0
+}
+
+
 export const cardTabs=Template.bind({})
 cardTabs.args={
     type:'card'
 }
 cardTabs.storyName='cardTabs'
+
+export const defaultIndexTabs=Template.bind({})
+defaultIndexTabs.args={
+    defaultIndex:1
+}
+defaultIndexTabs.storyName='defaultIndexTabs'

@@ -65,4 +65,8 @@ const Tabs: React.FC<TabsProps> = (props) => {
     </div>
   );
 };
+Tabs.defaultProps={
+  defaultIndex:0,
+  type:'line'
+}
 export default Tabs;

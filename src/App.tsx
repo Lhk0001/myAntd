@@ -5,6 +5,7 @@ import MenuItem from './components/Menu/MenuItem';
 import SubMenu from './components/Menu/SubMenu';
 import Tabs from './components/Tabs/Tabs';
 import TabItem from './components/Tabs/TabItem';
+import Input from './components/Input/Input';
 function App() {
   
   return (
@@ -48,6 +49,8 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <Input prepend={'qian'} append={'hou'}/>
+        <Input disabled size='sm' prepend={'qian'} append={'hou'}/>
         <a
           className="App-link"
           href="https://reactjs.org"

@@ -5,7 +5,10 @@
 @import "reboot";
 
 //mixins 
-@import "_mixins";
+@import "mixins";
+
+//animation
+@import "animation";
 
 //button
 @import "../components/Button/button";
@@ -14,4 +17,7 @@
 @import "../components/Menu/menu";
 
 //tabs
-@import "../components/Tabs/tabs"
+@import "../components/Tabs/tabs";
+
+//input
+@import "../components/Input/input"

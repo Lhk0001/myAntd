@@ -2,7 +2,7 @@ import Button, { ButtonSize, ButtonType } from "./Button";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 
 const buttonMeta :ComponentMeta<typeof Button>={
-    title:'第四章：Button',
+    title:'Button',
     id:'button',
     component:Button,
     tags: ['autodocs'],

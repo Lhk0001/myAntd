@@ -1,7 +1,5 @@
-import React, { ChangeEvent, ReactElement, useRef, useState } from "react";
-import axios, { AxiosProgressEvent } from "axios";
-import Button from "../Button/Button";
-import { error } from "console";
+import React, { ChangeEvent,  useRef, useState } from "react";
+import axios from "axios";
 import UploadList from "./UploadList";
 import Dragger from "./Dragger";
 

@@ -1,4 +1,4 @@
-import Button, { ButtonSize, ButtonType } from "./Button";
+import Button from "./Button";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 
 const buttonMeta :ComponentMeta<typeof Button>={

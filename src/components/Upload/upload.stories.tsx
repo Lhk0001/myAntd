@@ -1,6 +1,4 @@
 import Button from "../Button/Button";
-import Icon from "../Icon";
-import Dragger from "./Dragger";
 import Upload, { UploadFile } from "./Upload";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 const uploadMeta:ComponentMeta<typeof Upload>={
@@ -15,8 +13,8 @@ const Template:ComponentStory<typeof Upload>=(args)=>{
         <Upload {...args}></Upload>
     )
 }
-export const defaultUpload=Template.bind({})
-defaultUpload.storyName='defalutUpload'
+export const DefaultUpload=Template.bind({})
+DefaultUpload.storyName='defalutUpload'
 const defaultUploadList:UploadFile[]=[
     {uid:'123',size:1234,name:'hello.md',status:'uploading',percent:66},
     {uid:'124',size:1234,name:'aaaa.md',status:'error',percent:66},
@@ -30,29 +28,29 @@ const checkFileSize=(file:File)=>{
     }
     return true
 }
-defaultUpload.args={
+DefaultUpload.args={
     action:'https://jsonplaceholder.typicode.com/posts',
     children:(<Button btnType="primary">上传文件</Button>),
 }
-defaultUpload.storyName='默认点击上传';
+DefaultUpload.storyName='默认点击上传';
 
-export const dragUpload=Template.bind({})
-dragUpload.storyName='拖拽上传'
-dragUpload.args={
+export const DragUpload=Template.bind({})
+DragUpload.storyName='拖拽上传'
+DragUpload.args={
     action:'https://jsonplaceholder.typicode.com/posts',
     drag:true,
     children:(<div>拖拽至框内上传</div>)
 }
-export const defaultListUpload=Template.bind({})
-defaultListUpload.storyName='默认上传列表'
-defaultListUpload.args={
+export const DefaultListUpload=Template.bind({})
+DefaultListUpload.storyName='默认上传列表'
+DefaultListUpload.args={
     action:'https://jsonplaceholder.typicode.com/posts',
     defaultFileList:defaultUploadList,
     children:(<Button btnType="primary">上传文件</Button>)
 }
-export const beforUpload=Template.bind({})
-beforUpload.storyName='上传文件前校验文件大小'
-beforUpload.args={
+export const BeforUpload=Template.bind({})
+BeforUpload.storyName='上传文件前校验文件大小'
+BeforUpload.args={
     action:'https://jsonplaceholder.typicode.com/posts',
     children:(<Button btnType="primary">上传文件</Button>),
     beforeUpload:(file)=>checkFileSize(file),

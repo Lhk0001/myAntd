@@ -14,11 +14,11 @@ const Template:ComponentStory<typeof Input>=(args)=>(
 )
 export const Default=Template.bind({})
 Default.storyName='默认输入框'
-export const lgInput=Template.bind({})
-lgInput.args={
+export const LgInput=Template.bind({})
+LgInput.args={
     size:'lg'
 }
-lgInput.storyName='大号输入框'
+LgInput.storyName='大号输入框'
 export const DisabledInput=Template.bind({})
 DisabledInput.args={
     disabled:true

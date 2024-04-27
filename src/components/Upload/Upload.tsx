@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, ReactElement, useRef, useState } from "react";
 import axios, { AxiosProgressEvent } from "axios";
 import Button from "../Button/Button";
 import { error } from "console";
 import UploadList from "./UploadList";
+import Dragger from "./Dragger";
 
 export type UploadFileStatus = "success" | "error" | "ready" | "uploading";
 export interface UploadFile {
@@ -27,13 +28,13 @@ export interface UploadProps {
   /**在上传之前触发的钩子函数，若返回值为false则停止上传，为Promise则上传.then返回的文件 */
   beforeUpload?: (file: File) => boolean | Promise<File>;
   /**文件状态改变时的钩子，上传成功或者失败时都会被调用	 */
-  onChange?: (file: File) => void;
+  onChange?: (file: UploadFile) => void;
   /**文件上传时的钩子 */
-  onProgress?: (percentage: number, file: File) => void;
+  onProgress?: (percentage: number, file: UploadFile) => void;
   /**文件上传成功时的钩子 */
-  onSuccess?: (data: any, file: File) => void;
+  onSuccess?: (data: any, file: UploadFile) => void;
   /**文件上传失败时的钩子 */
-  onError?: (err: any, file: File) => void;
+  onError?: (err: any, file: UploadFile) => void;
   /**设置请求头 */
   header?: { [key: string]: any };
   /**上传文件的字段名 */
@@ -46,6 +47,10 @@ export interface UploadProps {
   accept?: string;
   /**是否支持多选文件 */
   multiple?: boolean;
+  /**是否支持拖拽上传 */
+  drag?: boolean;
+  /** */
+  children?: React.ReactNode;
 }
 const Upload: React.FC<UploadProps> = (props) => {
   const {
@@ -62,7 +67,9 @@ const Upload: React.FC<UploadProps> = (props) => {
     data,
     withCredentials,
     accept,
-    multiple
+    multiple,
+    drag,
+    children,
   } = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploadList, setUploadList] = useState<UploadFile[]>(
@@ -122,15 +129,16 @@ const Upload: React.FC<UploadProps> = (props) => {
       percent: 0,
       raw: file,
     };
-    setUploadList((prevList)=>{
-      return [_file,...prevList]
-    })
+    setUploadList((prevList) => {
+      return [_file, ...prevList];
+    });
     // setUploadList([_file, ...uploadList]);
     const formData = new FormData();
     formData.append(name || file.name, file);
-    data && Object.keys(data).forEach((key) => {
-      formData.append(key,data[key])
-    });
+    data &&
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
     axios
       .post(action, formData, {
         headers: {
@@ -145,7 +153,7 @@ const Upload: React.FC<UploadProps> = (props) => {
             updateFileList(_file, { percent: percentage, status: "uploading" });
 
             if (onProgress) {
-              onProgress(percentage, file);
+              onProgress(percentage, _file);
             }
           }
         },
@@ -153,19 +161,19 @@ const Upload: React.FC<UploadProps> = (props) => {
       .then((res) => {
         updateFileList(_file, { status: "success", response: res });
         if (onChange) {
-          onChange(file);
+          onChange(_file);
         }
         if (onSuccess) {
-          onSuccess(res.data, file);
+          onSuccess(res.data, _file);
         }
       })
       .catch((err) => {
         updateFileList(_file, { status: "error", error: err });
         if (onChange) {
-          onChange(file);
+          onChange(_file);
         }
         if (onError) {
-          onError(err, file);
+          onError(err, _file);
         }
       });
   };
@@ -177,18 +185,28 @@ const Upload: React.FC<UploadProps> = (props) => {
   };
   return (
     <div className="mg-upload-component">
-      <Button btnType="primary" onClick={() => handleClick()}>
+      {/* <Button btnType="primary" >
         上传文件
-      </Button>
-      <input
-        ref={inputRef}
-        className="mg-file-input"
-        style={{ display: "none" }}
-        type="file"
-        onChange={(e) => handleFileChange(e)}
-        accept={accept}
-        multiple={multiple}
-      />
+      </Button> */}
+      <div
+        className="mg-upload-input"
+        style={{ display: "inline-block" }}
+        onClick={() => handleClick()}
+      >
+        {drag ? <Dragger onFile={(files) => {
+          uploadFiles(files)
+        }}>{children}</Dragger> : children}
+        <input
+          ref={inputRef}
+          className="mg-file-input"
+          style={{ display: "none" }}
+          type="file"
+          onChange={(e) => handleFileChange(e)}
+          accept={accept}
+          multiple={multiple}
+        />
+      </div>
+
       <UploadList fileList={uploadList} onRemove={handleRemove}></UploadList>
     </div>
   );

@@ -24,6 +24,22 @@
             pointer-events: none;
         }
     }
+    &:focus,
+    &.focus{
+        outline: none;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        opacity: 0.4;
+        transition: .3s;
+    }
+    &:active::after{
+        box-shadow: 0 0 0 6px var(--primary-color);
+        opacity: 0;
+    }
 }
 .mg-btn-lg{
     @include button-size($btn-padding-y-lg,$btn-padding-x-lg,$btn-font-size-lg,$btn-border-radius-lg);

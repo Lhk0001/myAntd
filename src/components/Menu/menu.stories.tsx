@@ -41,3 +41,4 @@ VerticalExpendMenu.args={
     mode:'vertical',
     defaultOpenSubMenus:['3']
 }
+VerticalExpendMenu.storyName='设置默认展开菜单'

@@ -25,14 +25,14 @@ ButtonLg.args={
     children:'Large Button',
     size:'lg'
 }
-ButtonLg.storyName='Large'
+ButtonLg.storyName='大号按钮'
 
 export const ButtonSm=Template.bind({})
 ButtonSm.args={
     children:'Large Button',
     size:'sm'
 }
-ButtonLg.storyName='Small'
+ButtonSm.storyName='小号按钮'
 
 export const ButtonDanger=Template.bind({})
 ButtonDanger.args={

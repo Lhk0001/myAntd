@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { useState ,DragEvent} from "react";
 
-interface DraggerProps {
+export interface DraggerProps {
   onFile: (files: FileList) => void;
   children?: React.ReactNode;
 }

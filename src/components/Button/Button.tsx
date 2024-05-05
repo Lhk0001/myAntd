@@ -1,5 +1,4 @@
 import React from "react";
-import "../../styles/index.scss";
 import classNames from "classnames";
 export type ButtonSize ="lg"|"sm"
 

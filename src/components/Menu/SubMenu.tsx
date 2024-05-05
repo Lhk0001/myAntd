@@ -19,7 +19,6 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
     const classes=classNames('mg-menu-item submenu-item',className,{
         'is-active':context.index===index
     })
-    console.log('sub',context.mode);
     const handleClick=()=>{
         if(context.onSelect&&!disabled&&(typeof index==='string')){
             context.onSelect(index)
@@ -35,7 +34,7 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
     }
     const clickEvents=context.mode==='vertical'?{
         onClick:handleClick
-    }:{onClick:()=>{console.log(index);
+    }:{onClick:()=>{//console.log(index);
     }}
     const hoverEvents=context.mode!=='vertical'?{
         onMouseEnter:(e:React.MouseEvent)=>handleMouse(e,true),

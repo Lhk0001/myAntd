@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "../Button/index";
 import Upload, { UploadFile } from "./Upload";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
 const uploadMeta:ComponentMeta<typeof Upload>={
@@ -7,6 +7,7 @@ const uploadMeta:ComponentMeta<typeof Upload>={
     component:Upload,
     tags: ['autodocs'],
 }
+const BASEURL='https://jsonplaceholder.typicode.com/posts';
 export default uploadMeta
 const Template:ComponentStory<typeof Upload>=(args)=>{
     return (
@@ -29,7 +30,7 @@ const checkFileSize=(file:File)=>{
     return true
 }
 DefaultUpload.args={
-    action:'https://jsonplaceholder.typicode.com/posts',
+    action:BASEURL,
     children:(<Button btnType="primary">上传文件</Button>),
 }
 DefaultUpload.storyName='默认点击上传';
@@ -37,21 +38,21 @@ DefaultUpload.storyName='默认点击上传';
 export const DragUpload=Template.bind({})
 DragUpload.storyName='拖拽上传'
 DragUpload.args={
-    action:'https://jsonplaceholder.typicode.com/posts',
+    action:BASEURL,
     drag:true,
     children:(<div>拖拽至框内上传</div>)
 }
 export const DefaultListUpload=Template.bind({})
 DefaultListUpload.storyName='默认上传列表'
 DefaultListUpload.args={
-    action:'https://jsonplaceholder.typicode.com/posts',
+    action:BASEURL,
     defaultFileList:defaultUploadList,
     children:(<Button btnType="primary">上传文件</Button>)
 }
 export const BeforUpload=Template.bind({})
 BeforUpload.storyName='上传文件前校验文件大小'
 BeforUpload.args={
-    action:'https://jsonplaceholder.typicode.com/posts',
+    action:BASEURL,
     children:(<Button btnType="primary">上传文件</Button>),
     beforeUpload:(file)=>checkFileSize(file),
 }

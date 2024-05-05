@@ -1,8 +1,9 @@
-import Menu from "./Menu";
-import MenuItem from "./MenuItem";
-import SubMenu from "./SubMenu";
+import Menu from "./index";
 import React from "react";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
+
+const MenuItem=Menu.Item;
+const SubMenu=Menu.SubMenu;
 
 const menuMeta:ComponentMeta<typeof Menu>={
     title:'Menu组件',

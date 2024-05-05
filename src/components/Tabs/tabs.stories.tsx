@@ -1,6 +1,8 @@
-import Tabs from "./Tabs";
-import TabItem from "./TabItem";
+import Tabs from "./index";
+// import TabItem from "./TabItem";
 import {ComponentMeta, ComponentStory} from '@storybook/react'
+
+const TabItem=Tabs.Item
 const tabsMeta:ComponentMeta<typeof Tabs>={
     title:'Tabs',
     id:'tabs',
@@ -15,22 +17,22 @@ const Template:ComponentStory<typeof Tabs>=(args)=>(
       <TabItem label={'3'}>内容3</TabItem>
     </Tabs>
 )
-export const defaultTabs=Template.bind({})
-defaultTabs.storyName='defalutTabs'
-defaultTabs.args={
+export const DefaultTabs=Template.bind({})
+DefaultTabs.storyName='defalutTabs'
+DefaultTabs.args={
     type:'line',
     defaultIndex:0
 }
 
 
-export const cardTabs=Template.bind({})
-cardTabs.args={
+export const CardTabs=Template.bind({})
+CardTabs.args={
     type:'card'
 }
-cardTabs.storyName='cardTabs'
+CardTabs.storyName='cardTabs'
 
-export const defaultIndexTabs=Template.bind({})
-defaultIndexTabs.args={
+export const DefaultIndexTabs=Template.bind({})
+DefaultIndexTabs.args={
     defaultIndex:1
 }
-defaultIndexTabs.storyName='defaultIndexTabs'
+DefaultIndexTabs.storyName='defaultIndexTabs'

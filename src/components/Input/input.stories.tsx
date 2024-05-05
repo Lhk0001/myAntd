@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory,ComponentMeta } from "@storybook/react";
-import Input from "./Input";
+import Input from "./index";
 const inputMeta:ComponentMeta<typeof Input>={
     title:'Input',
     id:'Input',

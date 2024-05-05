@@ -1,0 +1,22 @@
+{
+    "compilerOptions":{
+        //编译后的文件输出位置
+        "outDir": "build",
+        //输出的moudle类型
+        "module": "esnext",
+        //es版本
+        "target": "ES5",
+        //.d.ts
+        "declaration": true,
+        "jsx":"react",
+        "moduleResolution": "Node", 
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx"
+    ]
+}
